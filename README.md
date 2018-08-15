@@ -1,7 +1,27 @@
 # Tz-Brute
 Tezos password bruteforcer built on top of Arthur Breitman's fundraiser tools for validation.  
-  
+
+## Update:
+##### 1) Installation on Linux
+##### 2) Simple heuristic
+
 ## How to use:  
+#### 1. Install the tool
+#### 2. Run the tool
+##### 1) When you don't remember your password at all.
+##### Mac OS
+     python main.py
+##### Linux
+     python3 main.py
+
+##### 2) When you remember the candidates for your passwords
+Modify and run claimTezos.py
+##### Mac OS
+     python claimTezos.py
+##### Linux
+     python3 claimTezos.py
+
+## Install Guide:
 ##### Mac OS
 ###### Just run ```run-osx.sh``` or follow the steps below:
 
@@ -14,16 +34,16 @@ pyenv global 3.6.5
 ```  
 If you don't want to use pyenv you can download Python 3 here:  
 https://www.python.org/downloads/  
-  
+
 Next step is installing pip:
 ```bash
 sudo easy_install pip
 ```  
-  
+
 Now we have pip we need to download and unzip this file:  
 https://github.com/NODESPLIT/tz-brute/archive/master.zip  
 You can then type "cd " into terminal (without brackets and with the space at the end) then drag and drop the newly unzipped folder into the terminal window and run the resulting command.  
-  
+
 We now need to install dependencies:
 ```bash
 pip install -r requirements.txt
@@ -33,9 +53,64 @@ From here we can run Tz-Brute like so:
 ```bash
 python main.py
 ```
-  
+
 ##### Linux
-###### coming soon
+#####  
+
+Firstly you'll need to install python3-dev, git if you don't have it already.  
+Open up a Terminal and run:  
+```bash
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get install -y git
+sudo apt-get install python3-dev
+```  
+If you encounter this message when 'sudo apt-get update':
+######  
+```could not get lock /var/lib/apt/lists/lock - …```
+```bash
+sudo rm /var/lib/apt/lists/lock
+sudo apt-get update
+```
+
+If you encounter this message when 'sudo apt-get install -y git':
+######  
+```could not get lock /var/lib/dpkg/lock - …```
+```bash
+sudo rm /var/lib/apt/lists/lock
+sudo dpkg --configure -a
+sudo apt-get install -y git
+```
+
+Next step is installing pip:
+```bash
+sudo apt-get install python3-pip
+```  
+
+Now we have pip we need to download and unzip this file:  
+https://github.com/mcwithimp/tz-brute/archive/master.zip  
+You can then type "cd " into terminal (without brackets and with the space at the end) then drag and drop the newly unzipped folder into the terminal window and run the resulting command.  
+Or
+```bash
+git clone git@github.com:mcwithimp/tz-brute.git
+cd tz-brute
+```
+
+We now need to install dependencies:
+```bash
+pip3 install --upgrade setuptools --user
+pip3 install pysodium --user
+pip3 install -r requirements.txt --user
+```
+
+From here we can run Tz-Brute like so:
+```bash
+python3 main.py
+```
+If you have a trouble, this may be because you already have installed python3 before:
+```bash
+python3.5 main.py
+```
 ##### Windows
 ###### coming soon
 ###
@@ -81,16 +156,16 @@ ___
 ###
 
 built by Jon - admin of the [unofficial Tezos Telegram](https://t.me/tezosplatform)  
-  
+
 web: [e.rroneo.us](http://e.rroneo.us/)  
 email: [jon@e.rroneo.us](mailto:jon@e.rroneo.us)  
 telegram: [@erroneous](https://t.me/erroneous)  
-  
+
 feel free to contact me with any questions!  
-  
-  
+
+
 feeling generous?  
-  
+
 tez: tz1MDNRzDjHEXrMM17MeajYBBJwGVWBrgWhb  
 eth: 0xbebb3c979daa3fbe89af4fb624c454ab842b18b3  
 btc: 3NSczAYLbyhKpKACW2epwgxUZVfthbUHzR  

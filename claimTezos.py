@@ -1,20 +1,25 @@
 from heuristic import claimTezos
-from itertools import product
+from itertools import product, permutations
 
 # Step 1. Put your information in pdf
-publicAddress = "put your tezos address which starts with tz1 here"
-mnemonic = "put your 15 mneonic words in pdf here"
-email = "put your email address in pdf here"
+publicAddress = "tz1XuEaocsLyD7"
+mnemonic = "flavoattoo near two hope"
+email = "scom"
 
 # Step 2. Spilt your password into meaning units
 # For example if cadidates for your passwords are
 # john0513, john2kate, Kate23!@, john!@#03
 # then your passwords consist of alphabet, number and special character
+
 alphabet = [
-	"john", "kate", "Kate"
+	"tkfka", "a", "cooking", "mnet", "qkqh", "qudtls", "patty", "addd"
 ]
+alphabet = alphabet + test
+
 number = [
-	"0513", "2", "23", "03"
+	"1", "2", "1123", "147", "3874", "1527",
+	# "62166216",
+	"1004", "6216621", "6216"
 ]
 
 special = [
@@ -26,13 +31,31 @@ special = [
 # but you don't know how they are sequenced
 # and you know how long they will be
 # for example you are sure that you use only "!", "#" and "$"
-mySpecial = "!#$"
-minimumLength = 0
-maximumLength = 3
-mySpecialList = []
-for tail in range(minimumLength, maximumLength + 1):
-	for suf in product(special, repeat=tail):
-		mySpecialList.append(''.join(suf))
+mySpecial = "@#!"
+minimumLength = 1
+maximumLength = 2
+duplicateSpecial = []
+nonDuplicateSpecial = []
+# duplicate
+for lenNum in range(minimumLength, maximumLength + 1):
+	for suf in product(mySpecial, repeat=lenNum):
+		duplicateSpecial.append(''.join(suf))
+
+# non duplicate
+for lenNum in range(minimumLength, maximumLength + 1):
+	for suf in permutations(mySpecial, lenNum):
+		nonDuplicateSpecial.append(''.join(suf))
+
+secondSpecial = list(set(duplicateSpecial) - set(nonDuplicateSpecial))
+
+
+# word = ["tkfka", "slrzns", "skrzns", "skrskr", "kimsunlover", "sunlover",
+# "skrtka", "slrtka", "skrtkaqnfrhrl", "qnfrhrl", "slrtkaqnfrhrl",
+# "patskim", "patkim", "psumkim", "sumkim", "a", "qkqh", "sorsor", "skrdnscjswo", "cjswo",
+# "gusskrdns", "nakun"]
+# num = [
+# 	"1", "2", "1123", "147", "3874", "1527", "6216621", "1004"
+# ]
 
 # Step 4. Set sequences of password with your password group
 # in our example in Step 2
@@ -43,16 +66,12 @@ for tail in range(minimumLength, maximumLength + 1):
 # 	Kate23!@: alphabet, number, special
 # 	john!@#03: alphabet, special, number
 # so your cases are 4
+
 cases = []
-cases.append([alphabet, number])
-cases.append([alphabet, number, alphabet])
-cases.append([alphabet, number, special])
-cases.append([alphabet, special, number])
-# if you are in the case of Step 3, then replace special into mySpecialList
-# cases.append([alphabet, number])
-# cases.append([alphabet, number, alphabet])
-# cases.append([alphabet, number, mySpecialList])
-# cases.append([alphabet, mySpecialList, number])
+cases.append([alphabet, number, nonDuplicateSpecial, number, nonDuplicateSpecial])
+
+cases.append([alphabet, nonDuplicateSpecial, number, nonDuplicateSpecial])
+cases.append([alphabet, nonDuplicateSpecial, number, nonDuplicateSpecial, number])
 
 # do not modify this
 claimTezos(cases, publicAddress, mnemonic, email)

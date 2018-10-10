@@ -26,10 +26,10 @@ def makeLoUp(str):
 	        new_permutations.append(h + perm)
 	return new_permutations
 
-def makeMulitLoUp(list):
+def makeMultiLoUp(sequces):
 	result = []
-	for li in list:
-		result += makeLoUp(li)
+	for seq in sequces:
+		result += makeLoUp(seq)
 	return list(OrderedDict.fromkeys(result))
 
 def isContainsUpper(alpha):
@@ -61,10 +61,6 @@ def makeCombs(listLeft, listRight):
 			if le == "" or ri == "":
 				result.append(le + ri)
 				continue
-			if le.lower() == ri.lower():
-				continue
-			if (le.lower()).find(ri.lower()) != -1 or (ri.lower()).find(le.lower()) != -1:
-				continue
 			result.append(le + ri)
 	return result
 
@@ -74,7 +70,7 @@ def reduce(sequence, iter, initVal = False):
 		sequence = sequence[1:]
 	for seq in sequence:
 		if(seq[0].isalpha()):
-			# seq = makeMuseqtLoUp(seq)
+			# seq = makeMultiLoUp(seq)
 			seq = heuristicLoUp(seq)
 		initVal = iter(initVal, seq)
 	return initVal
@@ -100,8 +96,8 @@ def claimTezos(cases, publicAddress, mnemonic, email):
     	print("all possibles: ", len(permutations))
     	passwd = force(check, permutations, publicAddress, mnemonic, email)
     	if passwd:
-    		print('Congrats! Your password is')
-    		print(passwd[0])
-    	else:
     		print()
+    		print('Congrats!! ', passwd[0])
+    	else:
+    		# print()
     		print("Nope.. Modify candidates and try again..")
